@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <marquee behavior="scroll" direction="up" scrollamount="8" loop="infinite" "#CC5801">
-  D-train Express service
+  F-train Express service
 </marquee>
 </div>
 <head>
@@ -152,78 +152,92 @@ body{
                  _ _ _ _ _ _🚆
     </div>
 
-    <a class="branch branch1" data-value="Norwood 205 st">
-        Norwood 205 st 
+    <a class="branch branch1" data-value="Station#1">
+        Coney Island Stillwell Av
     </a>
 
-    <a class="branch branch2" data-value="Kingsbridge Rd">
-        Kingsbridge rd
+    <a class="branch branch2" data-value="Station#2">
+        Neptune Av  
     </a>
 
-    <a class="branch branch3" data-value="182-183sts">
-        182-183 sts
+    <a class="branch branch3" data-value="Station#3">
+        Avenue U
     </a>
 
-    <a class="branch branch4" data-value="Jackson Hts-Roosevelt Av">
-        174-175 sts
+    <a class="branch branch4" data-value="Station#4">
+        Avenue P
     </a>
 
-    <a class="branch branch5" data-value="167 st">
-        167 st 
+    <a class="branch branch5" data-value="Station#5">
+        Bay Pkwy
     </a>
 
-    <a class="branch branch6" data-value="145 st ">
-        145 st
+    <a class="branch branch6" data-value="Station#6">
+        18 Av
     </a>
 
-    <a class="branch branch7" data-value="59st Colombus Circle">
-        59st Colombus Circle
+    <a class="branch branch7" data-value="Station#7">
+        Church Av
     </a>
 
-    <a class="branch branch8" data-value="47-50 sts Rockerfeller Center">
-        47-50 sts Rockfeller Center
+    <a class="branch branch8" data-value="Station#8">
+        15st-Propect Park 
     </a>
 
-    <a class="branch branch9" data-value="34st Herald sq">
-        34st Herald sq
+    <a class="branch branch9" data-value="Station#9">
+        4 Av-9st
     </a>
 
-    <a class="branch branch10" data-value="Broadway-lafayette st">
-        Broadway- lafayette st
+    <a class="branch branch10" data-value="Station#10">
+        Caroll st
     </a>
 
-    <a class="branch branch11" data-value="14 St">
-        14 St
+    <a class="branch branch11" data-value="Station#11">
+        Jay st-Metrotech
     </a>
 
-    <a class="branch branch12" data-value="9 ave ">
-        9 ave
+    <a class="branch branch12" data-value="Station#12">
+        East Broadway
     </a>
 
-    <a class="branch branch13" data-value="50 st">
-        50st
+    <a class="branch branch13" data-value="Station#13">
+        2nd Av
     </a>
 
-    <a class="branch branch14" data-value="62 st">
-        62 St
+    <a class="branch branch14" data-value="Station#14">
+        W 4 st 
     </a>
 
-    <a class="branch branch15" data-value="79 st">
-        79st
+    <a class="branch branch15" data-value="Station#15">
+        23st
     </a>
 
-    <a class="branch branch16" data-value="20 Av">
-        20 Av
+    <a class="branch branch16" data-value="Station#16">
+        42st Bryant Park
     </a>
 
-    <a class="branch branch17" data-value="25 Av">
-        25 Av
+    <a class="branch branch17" data-value="Station#17">
+        5 Av-53st
     </a>
 
-    <a class="branch branch18" data-value="Coney Island stillwell av">
-       Coney Island stillwell av
+    <a class="branch branch18" data-value="Station#18">
+       Court Sq-23st
     </a>
 
+    <a class="branch branch19" data-value="Station#19">
+       Jackson Heights Rosevelt Av
+    </a>
+
+    <a class="branch branch20" data-value="Station#20">
+       75 Av
+    </a>
+
+    <a class="branch branch21" data-value="Station#21">
+       Sutphin Blvd
+    </a>
+    <a class="branch branch22" data-value="Station#22">
+       169st
+    </a>
 </div>
 
 <div id="infoPanel" class="info-panel">
