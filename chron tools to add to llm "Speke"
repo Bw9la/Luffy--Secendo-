@@ -1,0 +1,51 @@
+#javascript#
+const cron = require('node-cron');
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Run greeting every time user logs in
+function loginGreeting(username) {
+  const hour = new Date().getHours();
+  let greeting;
+  
+  if (hour < 12) greeting = "Good morning";
+  else if (hour < 18) greeting = "Good afternoon";
+  else greeting = "Good evening";
+  
+  console.log(`${greeting}, ${username}! Welcome back.`);
+}
+
+// Trigger on login
+loginGreeting('Bw9la');
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+#Python#
+import schedule
+import time
+from datetime import datetime
+def login_greeting(username):
+    hour = datetime.now().hour
+    
+    if hour < 12:
+        greeting = "Good morning"
+    elif hour < 18:
+        greeting = "Good afternoon"
+    else:
+        greeting = "Good evening"
+    
+    print(f"{greeting}, {username}! Welcome back.")
+
+# Trigger on login
+login_greeting('Bw9la')
+ -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  #javascript#
+  function greetUser(username) {
+  const hour = new Date().getHours();
+  const greetings = {
+    morning: "Good morning",
+    afternoon: "Good afternoon",
+    evening: "Good evening"
+  };
+  
+  const timeOfDay = hour < 12 ? 'morning' : hour < 18 ? 'afternoon' : 'evening';
+  return `${greetings[timeOfDay]}, ${username}! Welcome back.`;
+}
+
+console.log(greetUser('Bw9la'));
