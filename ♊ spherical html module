@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live 3D Spherical Module</title>
+  <title>Live 3D Spherical Module - Transit Network</title>
   <style>
     /* ==========================================================================
        CSS STYLING & 3D VIEWPORT CONTEXT
@@ -24,6 +24,7 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
     }
 
     /* 1. Define the 3D space viewport perspective */
@@ -48,19 +49,24 @@
       will-change: transform; /* Pushes math transformations directly to GPU */
     }
 
-    /* 3. Structural parameters for the text particle nodes */
+    /* 3. Structural parameters for the station node elements */
     .node {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 20px;
-      height: 20px;
+      width: auto;
+      height: auto;
+      padding: 6px 10px;
       margin: -10px 0 0 -10px; /* Perfectly centers elements on coordinate points */
       font-family: 'Courier New', Courier, monospace;
-      font-size: 16px;
+      font-size: 11px;
       font-weight: bold;
       color: rgba(255, 255, 255, 0.9);
       text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      background-color: rgba(10, 10, 10, 0.7);
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      border-radius: 4px;
+      white-space: nowrap;
       
       /* Essential structural layer rendering properties */
       transform-style: preserve-3d;
@@ -69,13 +75,92 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     /* Hover effect for active nodes */
     .node:hover {
       color: #00ffcc;
       text-shadow: 0 0 12px #00ffcc;
+      border-color: rgba(0, 255, 204, 0.8);
+      background-color: rgba(10, 10, 10, 0.95);
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+      transform: scale(1.2) !important;
+    }
+
+    /* Station label styling */
+    .station-label {
+      display: block;
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .station-number {
+      display: block;
+      font-size: 9px;
+      color: rgba(0, 255, 204, 0.7);
+      margin-top: 2px;
+      font-weight: normal;
+    }
+
+    /* Info panel for selected station */
+    .info-panel {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: rgba(5, 5, 5, 0.95);
+      border: 2px solid rgba(0, 255, 204, 0.5);
+      border-radius: 8px;
+      padding: 15px;
+      max-width: 300px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 12px;
+      display: none;
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+      z-index: 1000;
+    }
+
+    .info-panel.active {
+      display: block;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .info-panel h3 {
+      color: #00ffcc;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .info-panel p {
+      margin: 4px 0;
+      opacity: 0.8;
+    }
+
+    /* Instructions */
+    .instructions {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(5, 5, 5, 0.9);
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      border-radius: 6px;
+      padding: 12px;
+      max-width: 250px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 11px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -88,21 +173,65 @@
     <div class="sphere" id="sphere"></div>
   </div>
 
+  <!-- Info Panel for Selected Station -->
+  <div class="info-panel" id="infoPanel">
+    <h3 id="stationName"></h3>
+    <p><strong>Station ID:</strong> <span id="stationId"></span></p>
+    <p><strong>Position:</strong> <span id="stationPos"></span></p>
+  </div>
+
+  <!-- Instructions -->
+  <div class="instructions">
+    <p>🖱️ <strong>Interact:</strong> Move cursor to rotate</p>
+    <p>🔗 <strong>Click:</strong> Select station</p>
+    <p>⏱️ <strong>Auto:</strong> Idle rotation</p>
+  </div>
+
   <!-- ==========================================================================
        JAVASCRIPT MATH & LIVE POINTER INTERACTION
        ========================================================================== -->
   <script>
-    const sphere = document.getElementById('sphere');
-    const totalNodes = 200; // Total density of scattered matrix characters
-    const radius = 200;     // Boundary width parameter of the sphere in pixels
+    // Station data mapped to sphere positions
+    const stationData = [
+      { id: 1, name: "Coney Island Stillwell Av", branch: "branch1" },
+      { id: 2, name: "Neptune Av", branch: "branch2" },
+      { id: 3, name: "Avenue U", branch: "branch3" },
+      { id: 4, name: "Avenue P", branch: "branch4" },
+      { id: 5, name: "Bay Pkwy", branch: "branch5" },
+      { id: 6, name: "18 Av", branch: "branch6" },
+      { id: 7, name: "Church Av", branch: "branch7" },
+      { id: 8, name: "15st-Prospect Park", branch: "branch8" },
+      { id: 9, name: "4 Av-9st", branch: "branch9" },
+      { id: 10, name: "Carroll st", branch: "branch10" },
+      { id: 11, name: "Jay st-Metrotech", branch: "branch11" },
+      { id: 12, name: "East Broadway", branch: "branch12" },
+      { id: 13, name: "2nd Av", branch: "branch13" },
+      { id: 14, name: "W 4 st", branch: "branch14" },
+      { id: 15, name: "23st", branch: "branch15" },
+      { id: 16, name: "42st Bryant Park", branch: "branch16" },
+      { id: 17, name: "5 Av-53st", branch: "branch17" },
+      { id: 18, name: "Court Sq-23st", branch: "branch18" },
+      { id: 19, name: "Jackson Heights Roosevelt Av", branch: "branch19" },
+      { id: 20, name: "75 Av", branch: "branch20" },
+      { id: 21, name: "Sutphin Blvd", branch: "branch21" },
+      { id: 22, name: "169st", branch: "branch22" }
+    ];
 
-    // 1. Generate and mathematically map nodes onto a 3D Sphere Surface
-    for (let i = 0; i < totalNodes; i++) {
+    const sphere = document.getElementById('sphere');
+    const totalNodes = stationData.length;
+    const radius = 200;
+
+    // Store node references for interaction
+    const nodeMap = new Map();
+
+    // 1. Generate and mathematically map station nodes onto a 3D Sphere Surface
+    stationData.forEach((station, i) => {
       const node = document.createElement('div');
       node.className = 'node';
+      node.dataset.stationId = station.id;
       
-      // Mimic the reference style using random alphanumeric characters or single digits
-      node.textContent = Math.floor(Math.random() * 10);
+      // Create station label with ID
+      node.innerHTML = `<div><span class="station-label">${station.name}</span><span class="station-number">Station #${station.id}</span></div>`;
       
       // Fibonacci Sphere algorithm for balanced distribution on a 3D sphere profile
       const phi = Math.acos(-1 + (2 * i) / totalNodes);
@@ -113,6 +242,11 @@
       const y = radius * Math.sin(phi) * Math.sin(theta);
       const z = radius * Math.cos(phi);
 
+      // Store coordinates for later reference
+      node.dataset.x = x;
+      node.dataset.y = y;
+      node.dataset.z = z;
+
       // Map mathematical variables to CSS Transform parameters
       node.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
       
@@ -120,32 +254,33 @@
       const depthOpacity = ((z + radius) / (2 * radius)) * 0.7 + 0.3;
       node.style.opacity = depthOpacity;
 
+      // Add click interaction
+      node.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectStation(station, x, y, z);
+      });
+
       sphere.appendChild(node);
-    }
+      nodeMap.set(station.id, { node, station, x, y, z });
+    });
 
     // 2. Interactive Pointer Mechanics
     let currentX = 0;
     let currentY = 0;
     let targetX = 0;
     let targetY = 0;
-    
-    // Automatic idle drift rotation parameters
     let autoRotationAngle = 0;
 
     // Monitor cursor positioning changes across the workspace
     document.querySelector('.scene').addEventListener('mousemove', (e) => {
       const rect = e.currentTarget.getBoundingClientRect();
-      
-      // Normalize cursor mapping matrix to parameters between -0.5 and 0.5
       const xNorm = (e.clientX - rect.left) / rect.width - 0.5;
       const yNorm = (e.clientY - rect.top) / rect.height - 0.5;
       
-      // Calculate responsive target rotation variables (Max angle range tilt: 60 degrees)
       targetX = -yNorm * 60; 
       targetY = xNorm * 60;
     });
 
-    // Reset sphere profile angle smoothly when cursor moves off the container view
     document.querySelector('.scene').addEventListener('mouseleave', () => {
       targetX = 0;
       targetY = 0;
@@ -153,20 +288,24 @@
 
     // 3. Smooth Frame Rate Interpolation Loop (Lerp Animation Engine)
     function renderLiveModule() {
-      // Linear interpolation logic formulas
       currentX += (targetX - currentX) * 0.08;
       currentY += (targetY - currentY) * 0.08;
-      
-      // Keep slow constant rotation drift alive on background idle
       autoRotationAngle += 0.2; 
       
-      // Apply final composition variables directly to the structural element container
       sphere.style.transform = `rotateX(${currentX}deg) rotateY(${currentY + autoRotationAngle}deg)`;
-      
-      // Loop continuously on each screen hardware refresh frame
       requestAnimationFrame(renderLiveModule);
     }
     
+    // Station selection handler
+    function selectStation(station, x, y, z) {
+      const infoPanel = document.getElementById('infoPanel');
+      document.getElementById('stationName').textContent = station.name;
+      document.getElementById('stationId').textContent = `${station.id}`;
+      document.getElementById('stationPos').textContent = `X: ${Math.round(x)}, Y: ${Math.round(y)}, Z: ${Math.round(z)}`;
+      
+      infoPanel.classList.add('active');
+    }
+
     // Initialize animation loop engine
     renderLiveModule();
   </script>
