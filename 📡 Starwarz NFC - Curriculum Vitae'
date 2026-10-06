@@ -19,7 +19,7 @@ Seproductions x microsoft
 
         body {
             font-family: Arial, sans-serif;
-            background: #111;
+            background: #FFD700 ;
             color: #D3AF37,;
             line-height: 1.6;
         }
@@ -135,14 +135,14 @@ Seproductions x microsoft
 
     <!-- HEADER -->
     <header>
-        <h1>Your Name</h1>
+        <h1>Muhammed Salahuddin</h1>
 
         <p>
-            Developer • Designer • Problem Solver
+            Developer • Designer • Soloution Corp
         </p>
 
         <div class="contact">
-            your@email.com · City, State
+            baw9la@gmail.com · New York, Kings County 
         </div>
     </header>
 
@@ -152,7 +152,7 @@ Seproductions x microsoft
         <h2>Profile</h2>
 
         <p>
-            A short professional introduction describing who you are,
+            A short professional introduction 
             what you do, and the type of work you specialize in.
         </p>
     </section>
@@ -160,41 +160,42 @@ Seproductions x microsoft
 
     <!-- EXPERIENCE -->
     <section>
-        <h2>Experience</h2>
+        <h2>Experience:</h2>
 
         <div class="job">
-            <h3>Job / Position</h3>
+            <h3>Personal Assistant </h3>
 
             <div class="date">
-                2024 — Present
+                2015 — Present
             </div>
 
             <p>
-                Company Name
+                Brooklyn Blooms
             </p>
 
             <ul>
-                <li>Achievement or responsibility.</li>
-                <li>Achievement or responsibility.</li>
-                <li>Achievement or responsibility.</li>
+                <li>Personal Driver </li>
+                <li>Janitor</li>
+                <li>Bussiness Development Co-ordinator</li>
             </ul>
         </div>
 
 
         <div class="job">
-            <h3>Previous Position</h3>
+            <h3>Customer Service </h3>
 
             <div class="date">
-                2022 — 2024
+                2013 — 2024
             </div>
 
             <p>
-                Previous Company
+                Stamina !!
             </p>
 
             <ul>
-                <li>Achievement or responsibility.</li>
-                <li>Achievement or responsibility.</li>
+                <li> Lead Out reach. </li>
+                <li>Operation Overiview</li>
+                <li> Quarterly Assesments   </li>
             </ul>
         </div>
     </section>
@@ -208,7 +209,7 @@ Seproductions x microsoft
             <a class="action-button" href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer">HTML</a>
             <a class="action-button" href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">CSS</a>
             <a class="action-button" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">JavaScript</a>
-            <a class="action-button" href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">TypeScript</a>
+            <a class="action-button" href="https://www.linkedin.com-se/" target="_blank" rel="noopener noreferrer">TypeScript</a>
             <a class="action-button" href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a>
             <a class="action-button" href="https://www.linux.org/" target="_blank" rel="noopener noreferrer">Linux</a>
         </div>
@@ -220,10 +221,12 @@ Seproductions x microsoft
         <h2>Projects</h2>
 
         <div class="job">
-            <h3>Project Name</h3>
+            <h3>Baw9latech</h3>
 
             <p>
-                Brief description of the project and what you built.
+                <strong>Bold Soloutions  </strong>
+                </strong></strong>
+                Soultions based Contracting, Where we find the answers to the questions we cant answer.
             </p>
         </div>
 
