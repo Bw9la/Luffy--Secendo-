@@ -13,8 +13,8 @@ Seproductions x microsoft
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            margin: 7px;
+            padding: 8px;
         }
 
         body {
@@ -33,16 +33,19 @@ Seproductions x microsoft
         header {
             text-align: center;
             padding: 40px 20px;
-            border-bottom: 1px solid #444;
+            border-bottom:10px
+            color:#D3AF37 ;
         }
 
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 8px;
+           Color:#D3AF37 ;
+            
         }
 
         header p {
-            color: #aaa;
+            color: #D3AF37 ;
         }
 
         .contact {
@@ -53,6 +56,7 @@ Seproductions x microsoft
         section {
             padding: 30px 0;
             border-bottom: 1px solid #333;
+            color:#D3AF37 ;
         }
 
         section h2 {
@@ -62,10 +66,14 @@ Seproductions x microsoft
 
         .job {
             margin-bottom: 25px;
+             color:#D3AF37 ;
+            
         }
+        
 
         .job h3 {
             margin-bottom: 3px;
+            color:#D3AF37 ;
         }
 
         .date {
@@ -98,7 +106,7 @@ Seproductions x microsoft
         .action-button:hover,
         .action-button:focus {
             background: #fff;
-            color: #111;
+            color: #9001;
         }
 
         .links {
@@ -117,7 +125,7 @@ Seproductions x microsoft
 
         .links a:hover {
             background: #fff;
-            color: #111;
+            color: #10100;
         }
 
         footer {
@@ -135,14 +143,14 @@ Seproductions x microsoft
 
     <!-- HEADER -->
     <header>
-        <h1>Your Name</h1>
+        <h1>Muhammed Salahuddin</h1>
 
         <p>
             Developer • Designer • Problem Solver
         </p>
 
         <div class="contact">
-            your@email.com · City, State
+            baw9la@email.com · US, State
         </div>
     </header>
 
@@ -152,8 +160,15 @@ Seproductions x microsoft
         <h2>Profile</h2>
 
         <p>
-            A short professional introduction describing who you are,
-            what you do, and the type of work you specialize in.
+            I'm a Creative Founder with over 5
+years of experience in various
+industries and divisions from
+procurememt management
+decreasing rates of attrition by
+incorporating incentives. To stepping
+in personaly analyze my teams swot's
+and a focus on Branding, Developing,
+Marketing, and Procurement
         </p>
     </section>
 
@@ -163,38 +178,38 @@ Seproductions x microsoft
         <h2>Experience</h2>
 
         <div class="job">
-            <h3>Job / Position</h3>
+            <h3>General Maintenance</h3>
 
             <div class="date">
-                2024 — Present
+                2023-2024
             </div>
 
             <p>
-                Company Name
+                UE maintenance
             </p>
 
             <ul>
-                <li>Achievement or responsibility.</li>
-                <li>Achievement or responsibility.</li>
-                <li>Achievement or responsibility.</li>
+                <li>Sanitation & Waste Management.</li>
+                <li>Facilities Management</li>
+                <li>Team Leader.</li>
             </ul>
         </div>
 
 
         <div class="job">
-            <h3>Previous Position</h3>
+            <h3>Bussiness Developer</h3>
 
             <div class="date">
-                2022 — 2024
+                2025 — Present
             </div>
 
             <p>
-                Previous Company
+                Brooklyn Blooms
             </p>
 
             <ul>
-                <li>Achievement or responsibility.</li>
-                <li>Achievement or responsibility.</li>
+                <li>Personal Assistant</li>
+                <li>Logistics Lead</li>
             </ul>
         </div>
     </section>
